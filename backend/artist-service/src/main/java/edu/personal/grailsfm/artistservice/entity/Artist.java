@@ -1,6 +1,7 @@
 package edu.personal.grailsfm.artistservice.entity;
 
 import edu.personal.grailsfm.artistservice.util.enums.ArtistAccountStatus;
+import edu.personal.grailsfm.artistservice.util.enums.converter.ArtistAccountStatusConverter;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -41,6 +42,7 @@ public class Artist {
     @Column(name = "contact_number", unique = true)
     private String contactNumber;
 
+    @Convert(converter = ArtistAccountStatusConverter.class)
     @Column(name = "status")
     private ArtistAccountStatus status;
 
