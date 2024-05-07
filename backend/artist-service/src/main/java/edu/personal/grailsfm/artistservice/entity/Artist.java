@@ -1,5 +1,6 @@
 package edu.personal.grailsfm.artistservice.entity;
 
+import edu.personal.grailsfm.artistservice.util.enums.ArtistAccountStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -41,7 +42,7 @@ public class Artist {
     private String contactNumber;
 
     @Column(name = "status")
-    private String status;
+    private ArtistAccountStatus status;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
