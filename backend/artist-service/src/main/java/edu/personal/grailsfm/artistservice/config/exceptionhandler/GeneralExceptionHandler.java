@@ -1,6 +1,7 @@
 package edu.personal.grailsfm.artistservice.config.exceptionhandler;
 
 import edu.personal.grailsfm.artistservice.dto.common.ErrorResponseDto;
+import edu.personal.grailsfm.artistservice.util.exception.common.DuplicateFieldException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,12 @@ public class GeneralExceptionHandler {
     public ResponseEntity<ErrorResponseDto> handleGeneralException(Exception ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(new ErrorResponseDto("An unexpected error has occurred", new Date()));
+    }
+
+    @ExceptionHandler(DuplicateFieldException.class)
+    public ResponseEntity<ErrorResponseDto> handleDuplicateFieldException(DuplicateFieldException ex){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ErrorResponseDto(ex.getMessage(), new Date()));
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)

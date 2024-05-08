@@ -19,11 +19,11 @@ public class ArtistServiceImpl implements ArtistService {
 
     @Override
     public Long createArtist(CreateArtistDto artistDto) {
-        if (artistRepository.findIdByName(artistDto.name()).isEmpty()) {
-            throw new DuplicateFieldException("An artist by this name is already registered");
+        if (artistRepository.findIdByName(artistDto.name()).isPresent()) {
+            throw new DuplicateFieldException("An artist by the given name is already registered");
         }
 
-        if (artistRepository.findIdByEmail(artistDto.email()).isEmpty()) {
+        if (artistRepository.findIdByEmail(artistDto.email()).isPresent()) {
             throw new DuplicateFieldException("Email is already registered");
         }
 
