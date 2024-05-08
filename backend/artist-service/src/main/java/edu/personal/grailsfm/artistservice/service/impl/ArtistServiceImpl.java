@@ -5,6 +5,7 @@ import edu.personal.grailsfm.artistservice.entity.Artist;
 import edu.personal.grailsfm.artistservice.repository.ArtistRepository;
 import edu.personal.grailsfm.artistservice.service.ArtistService;
 import edu.personal.grailsfm.artistservice.util.enums.ArtistAccountStatus;
+import edu.personal.grailsfm.artistservice.util.exception.artist.ArtistCreationException;
 import edu.personal.grailsfm.artistservice.util.mapper.ArtistMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class ArtistServiceImpl implements ArtistService {
         Artist savedArtist = artistRepository.save(artist);
 
         if (savedArtist.getId() == null) {
-            return null;
+            throw new ArtistCreationException();
         }
 
         return savedArtist.getId();
