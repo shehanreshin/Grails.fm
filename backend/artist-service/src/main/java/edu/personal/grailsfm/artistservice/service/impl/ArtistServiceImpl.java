@@ -6,6 +6,7 @@ import edu.personal.grailsfm.artistservice.repository.ArtistRepository;
 import edu.personal.grailsfm.artistservice.service.ArtistService;
 import edu.personal.grailsfm.artistservice.util.enums.ArtistAccountStatus;
 import edu.personal.grailsfm.artistservice.util.exception.artist.ArtistCreationException;
+import edu.personal.grailsfm.artistservice.util.exception.common.DuplicateFieldException;
 import edu.personal.grailsfm.artistservice.util.mapper.ArtistMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,14 @@ public class ArtistServiceImpl implements ArtistService {
 
     @Override
     public Long createArtist(CreateArtistDto artistDto) {
+        if (artistRepository.findIdByName(artistDto.name()).isEmpty()) {
+            throw new DuplicateFieldException("An artist by this name is already registered");
+        }
+
+        if (artistRepository.findIdByEmail(artistDto.email()).isEmpty()) {
+            throw new DuplicateFieldException("Email is already registered");
+        }
+
         Artist artist = artistMapper.map(Artist.class, artistDto);
         artist.setStatus(ArtistAccountStatus.CONFIRMATION_PENDING);
 
