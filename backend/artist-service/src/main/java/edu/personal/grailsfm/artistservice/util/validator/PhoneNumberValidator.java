@@ -1,5 +1,6 @@
 package edu.personal.grailsfm.artistservice.util.validator;
 
+import edu.personal.grailsfm.artistservice.util.validator.annotation.PhoneNumber;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
