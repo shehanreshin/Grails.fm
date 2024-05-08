@@ -10,10 +10,10 @@ public class ArtistMapperImpl implements ArtistMapper {
     @Override
     public Artist map(Class<Artist> type, CreateArtistDto artistDto) {
         return Artist.builder()
-                .name(artistDto.getName())
-                .email(artistDto.getEmail())
-                .password(artistDto.getPassword())
-                .contactNumber(artistDto.getContactNumber())
+                .name(artistDto.name())
+                .email(artistDto.email())
+                .password(artistDto.password())
+                .contactNumber(artistDto.contactNumber())
                 .build();
     }
 }
