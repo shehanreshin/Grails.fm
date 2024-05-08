@@ -4,12 +4,12 @@ import edu.personal.grailsfm.artistservice.util.validator.annotation.ContactNumb
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Builder;
 
-@Builder
 public record CreateArtistDto(
         @Schema(example = "Michael Scott")
-        @NotBlank(message = "Name is mandatory")
+        @NotEmpty(message = "Name is mandatory")
         String name,
 
         @Schema(example = "msott@dundermufflin.org")

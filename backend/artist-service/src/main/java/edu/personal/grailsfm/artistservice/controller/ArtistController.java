@@ -2,6 +2,7 @@ package edu.personal.grailsfm.artistservice.controller;
 
 import edu.personal.grailsfm.artistservice.dto.artist.CreateArtistDto;
 import edu.personal.grailsfm.artistservice.service.ArtistService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class ArtistController {
     private final ArtistService artistService;
 
     @PostMapping
-    public ResponseEntity<Long> createArtist(@RequestBody CreateArtistDto artistDto) {
+    public ResponseEntity<Long> createArtist(@Valid @RequestBody CreateArtistDto artistDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(artistService.createArtist(artistDto));
     }
 }
