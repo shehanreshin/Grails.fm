@@ -1,6 +1,6 @@
 package edu.personal.grailsfm.artistservice.dto.artist;
 
-import edu.personal.grailsfm.artistservice.util.validator.annotation.PhoneNumber;
+import edu.personal.grailsfm.artistservice.util.validator.annotation.ContactNumber;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
@@ -20,6 +20,6 @@ public class CreateArtistDto {
     @NotBlank(message = "Password is mandatory")
     private String password;
 
-    @PhoneNumber
+    @ContactNumber
     private String contactNumber;
 }

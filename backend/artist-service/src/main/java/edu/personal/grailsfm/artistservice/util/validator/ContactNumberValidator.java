@@ -1,12 +1,12 @@
 package edu.personal.grailsfm.artistservice.util.validator;
 
-import edu.personal.grailsfm.artistservice.util.validator.annotation.PhoneNumber;
+import edu.personal.grailsfm.artistservice.util.validator.annotation.ContactNumber;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-public class PhoneNumberValidator implements ConstraintValidator<PhoneNumber, String> {
+public class ContactNumberValidator implements ConstraintValidator<ContactNumber, String> {
     @Override
-    public void initialize(PhoneNumber constraintAnnotation) {
+    public void initialize(ContactNumber constraintAnnotation) {
         ConstraintValidator.super.initialize(constraintAnnotation);
     }
 
