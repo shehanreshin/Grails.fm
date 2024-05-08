@@ -2,8 +2,6 @@ package edu.personal.grailsfm.artistservice.dto.common;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PastOrPresent;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 import java.util.Date;
 
