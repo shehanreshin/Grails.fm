@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.util.Date;
 
 @RestControllerAdvice
-public class GlobalExceptionHandler {
+public class GeneralExceptionHandler {
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponseDto> handleInternalServerError(Exception ex) {
+    public ResponseEntity<ErrorResponseDto> handleGeneralException(Exception ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(new ErrorResponseDto(ex.getMessage(), new Date()));
+                .body(new ErrorResponseDto("An unexpected error has occurred", new Date()));
     }
 }
