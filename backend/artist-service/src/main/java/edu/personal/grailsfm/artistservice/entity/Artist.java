@@ -40,7 +40,7 @@ public class Artist {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "contact_number", unique = true)
+    @Column(name = "contact_number")
     private String contactNumber;
 
     @Convert(converter = ArtistAccountStatusConverter.class)
