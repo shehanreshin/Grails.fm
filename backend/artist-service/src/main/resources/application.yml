@@ -6,7 +6,7 @@ spring:
     driver-class-name: org.postgresql.Driver
     username: ${DB_USER}
     password: ${DB_PASSWORD}
-    url: jdbc:postgresql://localhost:5432/artistdb
+    url: jdbc:postgresql://localhost:9401/artistdb
   jpa:
     hibernate:
       ddl-auto: update

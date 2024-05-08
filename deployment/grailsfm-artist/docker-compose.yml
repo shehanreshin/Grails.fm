@@ -1,5 +1,15 @@
 services:
   grailsfm-artist:
-    build: .
+    container_name: grailsfm-artist
+    image: postgres:16
     ports:
-      - "5432:5432"
+      - "9401:5432"
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_DB=artistdb
+    command: >
+      bash -c "
+        echo 'CREATE USER ''${DB_USER}'' WITH PASSWORD ''${DB_PASSWORD}'';' >> /docker-entrypoint-initdb.d/init.sql &&
+        echo 'GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO ''${DB_USER}'';' >> /docker-entrypoint-initdb.d/init.sql &&
+        docker-entrypoint.sh postgres"
