@@ -1,0 +1,5 @@
+services:
+  grailsfm-artist:
+    build: .
+    ports:
+      - "5432:5432"
