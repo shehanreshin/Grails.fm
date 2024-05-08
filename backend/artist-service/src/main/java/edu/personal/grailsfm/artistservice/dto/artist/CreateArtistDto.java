@@ -8,23 +8,22 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
 @Builder
-public class CreateArtistDto {
-    @Schema(example = "Michael Scott")
-    @NotBlank(message = "Name is mandatory")
-    private String name;
+public record CreateArtistDto(
+        @Schema(example = "Michael Scott")
+        @NotBlank(message = "Name is mandatory")
+        String name,
 
-    @Schema(example = "msott@dundermufflin.org")
-    @Email
-    private String email;
+        @Schema(example = "msott@dundermufflin.org")
+        @Email
+        String email,
 
-    @Schema(example = "scottstots")
-    @NotBlank(message = "Password is mandatory")
-    private String password;
+        @Schema(example = "scottstots")
+        @NotBlank(message = "Password is mandatory")
+        String password,
 
-    @Schema(example = "0763211347")
-    @ContactNumber
-    private String contactNumber;
+        @Schema(example = "0763211347")
+        @ContactNumber
+        String contactNumber
+) {
 }
