@@ -1,6 +1,7 @@
 HELP.md
 target/
 .mvn
+.jpb
 !**/src/main/**/target/
 !**/src/test/**/target/
 
