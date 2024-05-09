@@ -1,6 +1,6 @@
 services:
-  grailsfm-artist:
-    container_name: grailsfm-artist
+  grailsfm-artist-db:
+    container_name: grailsfm-artist-db
     image: postgres:16
     ports:
       - "9401:5432"
@@ -12,3 +12,4 @@ services:
       bash -c "
         echo 'CREATE USER ''${DB_USER}'' WITH PASSWORD ''${DB_PASSWORD}'';' >> /docker-entrypoint-initdb.d/init.sql &&
         echo 'GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO ''${DB_USER}'';' >> /docker-entrypoint-initdb.d/init.sql && docker-entrypoint.sh postgres"
+    restart: always
