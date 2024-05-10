@@ -6,6 +6,7 @@ import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
 import java.util.Objects;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -16,7 +17,7 @@ import java.util.Objects;
 public class Role {
     @PrimaryKey
     @Column(value = "id")
-    private Integer id;
+    private UUID id;
 
     @Column(value = "name")
     private String name;
