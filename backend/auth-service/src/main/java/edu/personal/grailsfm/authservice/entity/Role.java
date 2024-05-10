@@ -6,7 +6,6 @@ import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
 import java.util.Objects;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -14,11 +13,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 @Table(value = "role")
-public class Role {
+public class Role implements Comparable<Role> {
     @PrimaryKey
-    @Column(value = "id")
-    private UUID id;
-
     @Column(value = "name")
     private String name;
 
@@ -30,11 +26,20 @@ public class Role {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Role role = (Role) o;
-        return Objects.equals(id, role.id);
+        return Objects.equals(name, role.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(name);
+    }
+
+    @Override
+    public int compareTo(Role o) {
+        int result = this.name.compareTo(o.name);
+        if (result == 0) {
+            return this.description.compareTo(o.description);
+        }
+        return result;
     }
 }
