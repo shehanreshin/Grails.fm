@@ -1,0 +1,7 @@
+services:
+  grailsfm-auth-db:
+    container_name: grailsfm-auth-db
+    image: cassandra:5.0
+    ports:
+      - "9042:9042"
+    restart: always
