@@ -1,0 +1,8 @@
+server:
+  servlet:
+    context-path: /api
+spring:
+  cassandra:
+    schema-action: create_if_not_exists
+    keyspace-name: auth
+    contact-points: auth-service-db
