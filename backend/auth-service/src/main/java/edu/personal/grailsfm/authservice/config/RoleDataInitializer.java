@@ -9,11 +9,7 @@ import lombok.Setter;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
-import java.util.stream.Collectors;
+import java.util.*;
 
 @Component
 public class RoleDataInitializer implements CommandLineRunner {
@@ -36,7 +32,14 @@ public class RoleDataInitializer implements CommandLineRunner {
     }
 
     private boolean isInitialDataExists() {
-        return false;
+        List<Role> roles = roleRepository.findAll();
+        if (roles.isEmpty()) return false;
+
+        List<RoleData> roleData = roles.stream()
+                .map(role -> mapper.convertValue(role, RoleData.class))
+                .sorted()
+                .toList();
+        return roleData.equals(initialData.stream().sorted().toList());
     }
 
     private void addInitialData() {
@@ -50,7 +53,7 @@ public class RoleDataInitializer implements CommandLineRunner {
     @Getter
     @Setter
     @AllArgsConstructor
-    private static final class RoleData {
+    private static final class RoleData implements Comparable<RoleData> {
         private String name;
         private String description;
 
@@ -65,6 +68,15 @@ public class RoleDataInitializer implements CommandLineRunner {
         @Override
         public int hashCode() {
             return Objects.hash(name, description);
+        }
+
+        @Override
+        public int compareTo(RoleData o) {
+            int result = this.name.compareTo(o.name);
+            if (result == 0) {
+                return this.description.compareTo(o.description);
+            }
+            return result;
         }
     }
 }
