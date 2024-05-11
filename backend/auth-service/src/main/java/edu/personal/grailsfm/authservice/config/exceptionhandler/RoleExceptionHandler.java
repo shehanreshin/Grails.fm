@@ -16,7 +16,7 @@ import java.util.Date;
 public class RoleExceptionHandler {
 
     @ExceptionHandler(InvalidRoleException.class)
-    public ResponseEntity<ErrorResponseDto> handleInvalidRoleException(Exception ex) {
+    public ResponseEntity<ErrorResponseDto> handleInvalidRoleException(InvalidRoleException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 new ErrorResponseDto(ex.getMessage(), new Date())
         );

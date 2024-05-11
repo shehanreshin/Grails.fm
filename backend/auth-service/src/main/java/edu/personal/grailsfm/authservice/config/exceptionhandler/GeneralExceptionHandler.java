@@ -1,6 +1,7 @@
 package edu.personal.grailsfm.authservice.config.exceptionhandler;
 
 import edu.personal.grailsfm.authservice.dto.common.ErrorResponseDto;
+import edu.personal.grailsfm.authservice.util.exception.common.ResourceNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,6 +48,12 @@ public class GeneralExceptionHandler {
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<ErrorResponseDto> handleHttpMessageNotReadableException(HttpMessageNotReadableException ex){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ErrorResponseDto(ex.getMessage(), new Date()));
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<ErrorResponseDto> handleResourceNotFoundException(ResourceNotFoundException ex){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(new ErrorResponseDto(ex.getMessage(), new Date()));
     }
