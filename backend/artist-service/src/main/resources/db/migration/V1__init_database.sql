@@ -8,6 +8,8 @@ CREATE TABLE artist
     password       VARCHAR(255),
     contact_number VARCHAR(255),
     status         INTEGER,
+    role           VARCHAR(255),
+    path_avatar    VARCHAR(255),
     created_at     TIMESTAMP WITHOUT TIME ZONE,
     updated_at     TIMESTAMP WITHOUT TIME ZONE,
     CONSTRAINT pk_artist PRIMARY KEY (id)
@@ -19,14 +21,14 @@ ALTER TABLE artist
 ALTER TABLE artist
     ADD CONSTRAINT uc_artist_name UNIQUE (name);
 
-INSERT INTO artist (id, name, email, password, contact_number, status, created_at, updated_at)
-    VALUES (
-            nextval('artist_sequence'),
-            'Jim Halpert',
-            'jh@dundermufflin.org',
-            'cece123123',
-            '0777200686',
-            1,
-            current_timestamp,
-            current_timestamp
-    );
+INSERT INTO artist (id, name, email, password, contact_number, status, role, path_avatar, created_at, updated_at)
+VALUES (nextval('artist_sequence'),
+        'Jim Halpert',
+        'jh@dundermufflin.org',
+        'cece123123',
+        '0777200686',
+        1,
+        'ARTIST',
+        'path_to_file',
+        current_timestamp,
+        current_timestamp);

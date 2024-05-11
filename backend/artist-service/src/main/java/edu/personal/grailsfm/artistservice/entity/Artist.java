@@ -47,6 +47,12 @@ public class Artist {
     @Column(name = "status")
     private ArtistAccountStatus status;
 
+    @Column(name = "role")
+    private String role;
+
+    @Column(name = "path_avatar")
+    private String pathAvatar;
+
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
