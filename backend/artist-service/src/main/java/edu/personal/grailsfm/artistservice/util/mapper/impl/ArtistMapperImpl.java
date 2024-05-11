@@ -14,6 +14,7 @@ public class ArtistMapperImpl implements ArtistMapper {
                 .email(artistDto.email())
                 .password(artistDto.password())
                 .contactNumber(artistDto.contactNumber())
+                .pathAvatar(artistDto.pathAvatar())
                 .build();
     }
 }
