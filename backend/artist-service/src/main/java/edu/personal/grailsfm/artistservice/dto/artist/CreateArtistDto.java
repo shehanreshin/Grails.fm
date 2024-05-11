@@ -22,6 +22,10 @@ public record CreateArtistDto(
 
         @Schema(example = "0763211347")
         @ContactNumber
-        String contactNumber
+        String contactNumber,
+
+        @Schema(example = "https://s3.amazonaws.com/openai-assets/research-covers/gpt-3.jpg")
+        @NotBlank(message = "Path to the image is mandatory")
+        String pathAvatar
 ) {
 }
