@@ -4,6 +4,7 @@ import edu.personal.grailsfm.authservice.dto.RoleResponseDto;
 import edu.personal.grailsfm.authservice.entity.Role;
 import edu.personal.grailsfm.authservice.repository.RoleRepository;
 import edu.personal.grailsfm.authservice.service.RoleService;
+import edu.personal.grailsfm.authservice.util.exception.role.InvalidRoleException;
 import edu.personal.grailsfm.authservice.util.mapper.RoleMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,8 +20,9 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public RoleResponseDto findRoleByName(String name) {
         Optional<Role> role = roleRepository.findById(name);
+
         if (role.isEmpty()) {
-            throw new RuntimeException();
+            throw new InvalidRoleException();
         }
 
         return roleMapper.map(RoleResponseDto.class, role.get());
