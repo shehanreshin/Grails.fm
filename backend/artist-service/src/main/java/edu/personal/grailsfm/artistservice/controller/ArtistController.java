@@ -18,7 +18,7 @@ public class ArtistController {
     private final ArtistService artistService;
 
     @PostMapping
-    public ResponseEntity<Long> createArtist(@Valid @RequestBody CreateArtistDto artistDto) {
+    public ResponseEntity<String> createArtist(@Valid @RequestBody CreateArtistDto artistDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(artistService.createArtist(artistDto));
     }
 }

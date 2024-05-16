@@ -1,11 +1,13 @@
 package edu.personal.grailsfm.artistservice.entity;
 
 import edu.personal.grailsfm.artistservice.util.enums.ArtistAccountStatus;
-import edu.personal.grailsfm.artistservice.util.enums.converter.ArtistAccountStatusConverter;
-import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Date;
 import java.util.Objects;
@@ -15,52 +17,41 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
-@Table(name = "artist")
+@Document(collation = "artist")
 public class Artist {
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "artist_sequence"
-    )
-    @SequenceGenerator(
-            name = "artist_sequence",
-            sequenceName = "artist_sequence",
-            allocationSize = 1
-    )
-    @Column(name = "id", unique = true)
-    private Long id;
+    @Field(name = "id")
+    private String id;
 
-    @Column(name = "name", unique = true)
+    @Indexed(unique = true)
+    @Field(name = "name")
     private String name;
 
-    @Column(name = "email", unique = true)
+    @Indexed(unique = true)
+    @Field(name = "email")
     private String email;
 
-    @Column(name = "password")
+    @Field(name = "password")
     private String password;
 
-    @Column(name = "contact_number")
+    @Field(name = "contactNumber")
     private String contactNumber;
 
-    @Convert(converter = ArtistAccountStatusConverter.class)
-    @Column(name = "status")
+    @Field(name = "status")
     private ArtistAccountStatus status;
 
-    @Column(name = "role", updatable = false)
+    @Field(name = "role")
     private final String role = "ARTIST";
 
-    @Column(name = "path_avatar")
+    @Field(name = "pathAvatar")
     private String pathAvatar;
 
-    @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_at")
+    @CreatedDate
+    @Field(name = "createdAt")
     private Date createdAt;
 
-    @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updated_at")
+    @LastModifiedDate
+    @Field(name = "updatedAt")
     private Date updatedAt;
 
     @Override

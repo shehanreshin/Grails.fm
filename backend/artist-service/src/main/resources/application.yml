@@ -2,18 +2,10 @@ server:
   servlet:
     context-path: /api
 spring:
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    username: ${DB_USER}
-    password: ${DB_PASSWORD}
-    url: jdbc:postgresql://localhost:9401/artistdb
-  jpa:
-    hibernate:
-      ddl-auto: validate
-  flyway:
-    enabled: true
-    baseline-on-migrate: true
-    baseline-description: "init"
-    baseline-version: 0
-    user: ${DB_USER}
-    password: ${DB_PASSWORD}
+  data:
+    mongodb:
+      host: localhost
+      port: 9401
+      database: artistdb
+      username: ${DB_USER}
+      password: ${DB_PASSWORD}

@@ -18,14 +18,14 @@ public class ArtistServiceImpl implements ArtistService {
     private final ArtistMapper artistMapper;
 
     @Override
-    public Long createArtist(CreateArtistDto artistDto) {
-        if (artistRepository.findIdByName(artistDto.name()).isPresent()) {
-            throw new DuplicateFieldException("An artist by the given name is already registered");
-        }
-
-        if (artistRepository.findIdByEmail(artistDto.email()).isPresent()) {
-            throw new DuplicateFieldException("Email is already registered");
-        }
+    public String createArtist(CreateArtistDto artistDto) {
+//        if (artistRepository.findIdByName(artistDto.name()).isPresent()) {
+//            throw new DuplicateFieldException("An artist by the given name is already registered");
+//        }
+//
+//        if (artistRepository.findIdByEmail(artistDto.email()).isPresent()) {
+//            throw new DuplicateFieldException("Email is already registered");
+//        }
 
         Artist artist = artistMapper.map(Artist.class, artistDto);
         artist.setStatus(ArtistAccountStatus.CONFIRMATION_PENDING);
