@@ -17,7 +17,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Document(collation = "artist")
+@Document(collection = "artist")
 public class Artist {
     @Id
     @Field(name = "id")
