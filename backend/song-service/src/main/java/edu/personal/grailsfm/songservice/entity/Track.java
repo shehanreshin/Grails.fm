@@ -1,5 +1,6 @@
     package edu.personal.grailsfm.songservice.entity;
 
+    import edu.personal.grailsfm.songservice.util.enums.TrackStatus;
     import lombok.Builder;
     import lombok.Getter;
     import lombok.Setter;
