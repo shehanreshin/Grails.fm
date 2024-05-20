@@ -1,0 +1,14 @@
+services:
+  grailsfm-song-db:
+    container_name: grailsfm-song-db
+    image: mongo:7.0
+    ports:
+      - "9501:27017"
+    environment:
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASSWORD}
+      - MONGO_INITDB_ROOT_USERNAME=${DB_USER}
+      - MONGO_INITDB_DATABASE=songdb
+    restart: always
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+
