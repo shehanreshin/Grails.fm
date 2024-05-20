@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/v1/artists")
 public class ArtistController {
-    private final ArtistService artistService;
+	private final ArtistService artistService;
 
-    @PostMapping
-    public ResponseEntity<String> createArtist(@Valid @RequestBody CreateArtistDto artistDto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(artistService.createArtist(artistDto));
-    }
+	@PostMapping
+	public ResponseEntity<String> createArtist(@Valid @RequestBody CreateArtistDto artistDto) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(artistService.createArtist(artistDto));
+	}
 }

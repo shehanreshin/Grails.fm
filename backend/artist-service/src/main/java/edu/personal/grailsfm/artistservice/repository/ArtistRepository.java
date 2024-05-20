@@ -1,7 +1,6 @@
 package edu.personal.grailsfm.artistservice.repository;
 
 import edu.personal.grailsfm.artistservice.entity.Artist;
-import org.springframework.data.mongodb.core.annotation.Collation;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;

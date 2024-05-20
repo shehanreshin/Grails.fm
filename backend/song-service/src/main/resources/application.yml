@@ -1,0 +1,11 @@
+server:
+  servlet:
+    context-path: /api
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 9501
+      database: songdb
+      username: ${DB_USER}
+      password: ${DB_PASSWORD}
