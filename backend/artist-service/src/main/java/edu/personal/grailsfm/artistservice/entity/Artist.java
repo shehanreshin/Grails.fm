@@ -14,8 +14,6 @@ import java.util.Objects;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
 @Document(collection = "artist")
 public class Artist {
@@ -34,7 +32,7 @@ public class Artist {
     @Field(name = "password")
     private String password;
 
-    @Field(name = "contactNumber")
+    @Field(name = "contact_number")
     private String contactNumber;
 
     @Field(name = "status")
@@ -43,15 +41,15 @@ public class Artist {
     @Field(name = "role")
     private final String role = "ARTIST";
 
-    @Field(name = "pathAvatar")
+    @Field(name = "path_avatar")
     private String pathAvatar;
 
     @CreatedDate
-    @Field(name = "createdAt")
+    @Field(name = "created_at")
     private Date createdAt;
 
     @LastModifiedDate
-    @Field(name = "updatedAt")
+    @Field(name = "updated_at")
     private Date updatedAt;
 
     @Override
