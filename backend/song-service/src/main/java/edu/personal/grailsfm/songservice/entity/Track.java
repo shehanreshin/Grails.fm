@@ -4,12 +4,15 @@
     import lombok.Builder;
     import lombok.Getter;
     import lombok.Setter;
+    import org.springframework.data.annotation.CreatedDate;
     import org.springframework.data.annotation.Id;
+    import org.springframework.data.annotation.LastModifiedDate;
     import org.springframework.data.mongodb.core.index.Indexed;
     import org.springframework.data.mongodb.core.mapping.Document;
     import org.springframework.data.mongodb.core.mapping.Field;
 
     import java.util.Date;
+    import java.util.Objects;
 
     @Setter
     @Getter
@@ -41,9 +44,24 @@
         @Field(name = "track_status")
         private TrackStatus status;
 
+        @CreatedDate
         @Field(name = "created_at")
         private Date createdAt;
 
+        @LastModifiedDate
         @Field(name = "updated_at")
         private Date updatedAt;
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Track track = (Track) o;
+            return Objects.equals(id, track.id);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(id);
+        }
     }
