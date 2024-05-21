@@ -19,7 +19,7 @@ public class TrackServiceImpl implements TrackService {
 
     @Override
     public Object createTrack(CreateTrackDto trackDto) throws UnsupportedAudioFileException, IOException {
-        Integer duration = audioProcessor.calculateDurationOfTrack(trackDto.file());
+        Float duration = audioProcessor.calculateDurationOfTrack(trackDto.file());
         return null;
     }
 }
