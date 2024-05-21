@@ -12,6 +12,7 @@
     import org.springframework.data.mongodb.core.mapping.Field;
 
     import java.util.Date;
+    import java.util.List;
     import java.util.Objects;
 
     @Setter
@@ -37,6 +38,9 @@
 
         @Field(name = "duration")
         private Integer duration;
+
+        @Field(name = "genres")
+        private List<String> genres;
 
         @Field(name = "play_count")
         private Long playCount;
