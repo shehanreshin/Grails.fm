@@ -1,6 +1,7 @@
 package edu.personal.grailsfm.songservice.service.impl;
 
-import edu.personal.grailsfm.songservice.service.AudioProcessor;
+import edu.personal.grailsfm.songservice.service.AudioProcessorService;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,7 +14,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 @Service
-public class AudioProcessorImpl implements AudioProcessor {
+public class WavAudioProcessorServiceImpl implements AudioProcessorService {
     @Override
     public Float calculateDurationOfTrack(MultipartFile file) throws IOException, UnsupportedAudioFileException {
         InputStream bufferedInputStream = new BufferedInputStream(file.getInputStream());

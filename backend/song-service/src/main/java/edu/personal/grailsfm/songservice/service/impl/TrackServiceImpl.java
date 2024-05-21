@@ -1,25 +1,24 @@
 package edu.personal.grailsfm.songservice.service.impl;
 
 import edu.personal.grailsfm.songservice.dto.CreateTrackDto;
-import edu.personal.grailsfm.songservice.service.AudioProcessor;
+import edu.personal.grailsfm.songservice.service.AudioProcessorService;
 import edu.personal.grailsfm.songservice.service.TrackService;
+import edu.personal.grailsfm.songservice.service.factory.AudioProcessorServiceFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 
 @Service
 @RequiredArgsConstructor
 public class TrackServiceImpl implements TrackService {
-    private final AudioProcessor audioProcessor;
+    private final AudioProcessorServiceFactory audioProcessorFactory;
 
     @Override
     public Object createTrack(CreateTrackDto trackDto) throws UnsupportedAudioFileException, IOException {
-        Float duration = audioProcessor.calculateDurationOfTrack(trackDto.file());
+        AudioProcessorService audioProcessorService = audioProcessorFactory.create(trackDto.file());
+        Float duration = audioProcessorService.calculateDurationOfTrack(trackDto.file());
         return null;
     }
 }
