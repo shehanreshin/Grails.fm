@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.util.Date;
 
 @Order(Ordered.HIGHEST_PRECEDENCE)
@@ -16,6 +17,11 @@ import java.util.Date;
 public class TrackExceptionHandler {
     @ExceptionHandler(TrackCreationException.class)
     public ResponseEntity<ErrorResponseDto> handleArtistCreationFailedException(TrackCreationException ex) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErrorResponseDto(ex.getMessage(), new Date()));
+    }
+
+    @ExceptionHandler(UnsupportedAudioFileException.class)
+    public ResponseEntity<ErrorResponseDto> handleArtistCreationFailedException(UnsupportedAudioFileException ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErrorResponseDto(ex.getMessage(), new Date()));
     }
 }
