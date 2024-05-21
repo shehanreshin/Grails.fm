@@ -37,9 +37,9 @@ public class TrackServiceImpl implements TrackService {
         track.setDuration(duration);
         track.setStatus(TrackStatus.ACTIVE);
 
-        track = trackRepository.save(track);
+        Track savedTrack = trackRepository.save(track);
 
-        if (track.getId() == null) throw new TrackCreationException();
-        return track.getId();
+        if (savedTrack.getId() == null) throw new TrackCreationException();
+        return savedTrack.getId();
     }
 }
