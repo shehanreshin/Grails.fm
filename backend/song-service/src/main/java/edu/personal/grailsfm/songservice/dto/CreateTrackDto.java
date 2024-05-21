@@ -10,7 +10,6 @@ public record CreateTrackDto(
         String artistName,
         String description,
         MultipartFile file,
-        List<String> genres,
-        String uri
+        List<String> genres
 ) {
 }
