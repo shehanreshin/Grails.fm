@@ -7,6 +7,7 @@ import edu.personal.grailsfm.songservice.service.AudioProcessorService;
 import edu.personal.grailsfm.songservice.service.TrackService;
 import edu.personal.grailsfm.songservice.service.factory.AudioProcessorServiceFactory;
 import edu.personal.grailsfm.songservice.util.enums.TrackStatus;
+import edu.personal.grailsfm.songservice.util.exception.common.DuplicateFieldException;
 import edu.personal.grailsfm.songservice.util.exception.track.TrackCreationException;
 import edu.personal.grailsfm.songservice.util.mapper.TrackMapper;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,10 @@ public class TrackServiceImpl implements TrackService {
 
     @Override
     public String createTrack(CreateTrackDto trackDto) throws UnsupportedAudioFileException, IOException {
+        if (trackRepository.findIdByTitleAnAndArtistName(trackDto.title(), trackDto.artistName()).isPresent()) {
+            throw new DuplicateFieldException("A track by the given name already exists for the given artist");
+        }
+
         AudioProcessorService audioProcessorService = audioProcessorFactory.create(trackDto.file());
         Float duration = audioProcessorService.calculateDurationOfTrack(trackDto.file());
 
