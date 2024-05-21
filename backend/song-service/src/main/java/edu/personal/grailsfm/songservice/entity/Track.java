@@ -41,6 +41,9 @@
         @Field(name = "play_count")
         private Long playCount;
 
+        @Field(name = "uri")
+        private String uri;
+
         @Field(name = "track_status")
         private TrackStatus status;
 
