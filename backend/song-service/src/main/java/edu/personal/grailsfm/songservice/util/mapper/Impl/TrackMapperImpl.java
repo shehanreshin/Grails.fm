@@ -1,6 +1,6 @@
 package edu.personal.grailsfm.songservice.util.mapper.Impl;
 
-import edu.personal.grailsfm.songservice.dto.CreateTrackDto;
+import edu.personal.grailsfm.songservice.dto.track.CreateTrackDto;
 import edu.personal.grailsfm.songservice.entity.Track;
 import edu.personal.grailsfm.songservice.util.mapper.TrackMapper;
 import org.springframework.stereotype.Component;

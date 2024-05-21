@@ -37,7 +37,7 @@
         private String description;
 
         @Field(name = "duration")
-        private Integer duration;
+        private Float duration;
 
         @Field(name = "genres")
         private List<String> genres;

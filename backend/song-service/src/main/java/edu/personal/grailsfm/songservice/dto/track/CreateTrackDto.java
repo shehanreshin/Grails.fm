@@ -1,4 +1,4 @@
-package edu.personal.grailsfm.songservice.dto;
+package edu.personal.grailsfm.songservice.dto.track;
 
 import org.springframework.web.multipart.MultipartFile;
 

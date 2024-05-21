@@ -1,9 +1,13 @@
 package edu.personal.grailsfm.songservice.service.impl;
 
-import edu.personal.grailsfm.songservice.dto.CreateTrackDto;
+import edu.personal.grailsfm.songservice.dto.track.CreateTrackDto;
+import edu.personal.grailsfm.songservice.entity.Track;
+import edu.personal.grailsfm.songservice.repository.TrackRepository;
 import edu.personal.grailsfm.songservice.service.AudioProcessorService;
 import edu.personal.grailsfm.songservice.service.TrackService;
 import edu.personal.grailsfm.songservice.service.factory.AudioProcessorServiceFactory;
+import edu.personal.grailsfm.songservice.util.enums.TrackStatus;
+import edu.personal.grailsfm.songservice.util.exception.TrackCreationException;
 import edu.personal.grailsfm.songservice.util.mapper.TrackMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,13 +20,21 @@ import java.io.IOException;
 public class TrackServiceImpl implements TrackService {
     private final AudioProcessorServiceFactory audioProcessorFactory;
     private final TrackMapper trackMapper;
+    private final TrackRepository trackRepository;
 
     @Override
-    public Object createTrack(CreateTrackDto trackDto) throws UnsupportedAudioFileException, IOException {
+    public String createTrack(CreateTrackDto trackDto) throws UnsupportedAudioFileException, IOException {
         AudioProcessorService audioProcessorService = audioProcessorFactory.create(trackDto.file());
         Float duration = audioProcessorService.calculateDurationOfTrack(trackDto.file());
 
+        Track track = trackMapper.map(Track.class, trackDto);
+        track.setUri("this is a uri");
+        track.setDuration(duration);
+        track.setStatus(TrackStatus.ACTIVE);
 
-        return null;
+        track = trackRepository.save(track);
+
+        if (track.getId() == null) throw new TrackCreationException();
+        return track.getId();
     }
 }
