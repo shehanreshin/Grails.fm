@@ -21,7 +21,7 @@ public class TrackExceptionHandler {
     }
 
     @ExceptionHandler(UnsupportedAudioFileException.class)
-    public ResponseEntity<ErrorResponseDto> handleArtistCreationFailedException(UnsupportedAudioFileException ex) {
+    public ResponseEntity<ErrorResponseDto> handleUnsupportedAudioFileException(UnsupportedAudioFileException ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErrorResponseDto(ex.getMessage(), new Date()));
     }
 }
