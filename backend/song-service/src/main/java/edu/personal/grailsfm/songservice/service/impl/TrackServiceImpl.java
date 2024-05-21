@@ -7,7 +7,7 @@ import edu.personal.grailsfm.songservice.service.AudioProcessorService;
 import edu.personal.grailsfm.songservice.service.TrackService;
 import edu.personal.grailsfm.songservice.service.factory.AudioProcessorServiceFactory;
 import edu.personal.grailsfm.songservice.util.enums.TrackStatus;
-import edu.personal.grailsfm.songservice.util.exception.TrackCreationException;
+import edu.personal.grailsfm.songservice.util.exception.track.TrackCreationException;
 import edu.personal.grailsfm.songservice.util.mapper.TrackMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

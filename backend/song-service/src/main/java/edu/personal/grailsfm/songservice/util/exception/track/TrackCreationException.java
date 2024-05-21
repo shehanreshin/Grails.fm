@@ -1,4 +1,4 @@
-package edu.personal.grailsfm.songservice.util.exception;
+package edu.personal.grailsfm.songservice.util.exception.track;
 
 public class TrackCreationException extends RuntimeException {
     public TrackCreationException() {
