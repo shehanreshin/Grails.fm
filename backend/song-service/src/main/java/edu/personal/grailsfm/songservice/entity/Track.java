@@ -48,7 +48,7 @@
         @Field(name = "uri")
         private String uri;
 
-        @Field(name = "track_status")
+        @Field(name = "status")
         private TrackStatus status;
 
         @CreatedDate
