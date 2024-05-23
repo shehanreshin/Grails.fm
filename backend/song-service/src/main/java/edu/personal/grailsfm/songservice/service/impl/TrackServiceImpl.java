@@ -27,7 +27,7 @@ public class TrackServiceImpl implements TrackService {
 
     @Override
     public String createTrack(CreateTrackDto trackDto) throws UnsupportedAudioFileException, IOException {
-        if (trackRepository.findIdByTitleAnAndArtistName(trackDto.title(), trackDto.artistName()).isPresent()) {
+        if (trackRepository.findIdByTitleAndArtistName(trackDto.title(), trackDto.artistName()).isPresent()) {
             throw new DuplicateFieldException("A track by the given name already exists for the given artist");
         }
 
@@ -47,6 +47,8 @@ public class TrackServiceImpl implements TrackService {
 
     @Override
     public List<String> findAllTracksOfArtist(String artistId) {
-        return trackRepository.findIdsByArtistIdAndStatuses(artistId, new TrackStatus[]{TrackStatus.ACTIVE, TrackStatus.ARCHIVED});
+        return trackRepository.findIdsByArtistIdAndStatuses(artistId, new TrackStatus[]{TrackStatus.ACTIVE, TrackStatus.ARCHIVED}).stream()
+                .map(TrackRepository.IdProjection::getId)
+                .toList();
     }
 }

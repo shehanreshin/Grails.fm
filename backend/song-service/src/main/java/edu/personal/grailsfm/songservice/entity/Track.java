@@ -10,6 +10,8 @@
     import org.springframework.data.mongodb.core.index.Indexed;
     import org.springframework.data.mongodb.core.mapping.Document;
     import org.springframework.data.mongodb.core.mapping.Field;
+    import org.springframework.data.mongodb.core.mapping.FieldType;
+    import org.springframework.data.mongodb.core.mapping.MongoId;
 
     import java.util.Date;
     import java.util.List;
