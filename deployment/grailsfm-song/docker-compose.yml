@@ -18,6 +18,7 @@ services:
       - "9550:4566"
     environment:
       - DOCKER_HOST=unix:///var/run/docker.sock
+      - SERVICES=s3
     volumes:
-      - ./init-localstack.sh:/etc/localstack/init/ready.d
+      - ./aws:/etc/localstack/init/ready.d
       - "/var/run/docker.sock:/var/run/docker.sock"
