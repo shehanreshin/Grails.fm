@@ -3,6 +3,7 @@ package edu.personal.grailsfm.songservice.controller;
 import edu.personal.grailsfm.songservice.dto.track.CreateTrackDto;
 import edu.personal.grailsfm.songservice.service.TrackService;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,14 +21,9 @@ import java.io.IOException;
 public class TrackController {
     private final TrackService trackService;
 
+    @SneakyThrows
     @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity<String> createTrack(@ModelAttribute CreateTrackDto trackDto) {
-        try {
-            return ResponseEntity.status(HttpStatus.CREATED).body(trackService.createTrack(trackDto));
-        } catch (UnsupportedAudioFileException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(trackService.createTrack(trackDto));
     }
 }
