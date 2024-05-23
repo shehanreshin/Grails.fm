@@ -1,6 +1,7 @@
 package edu.personal.grailsfm.songservice.service.impl;
 
 import edu.personal.grailsfm.songservice.dto.track.CreateTrackDto;
+import edu.personal.grailsfm.songservice.dto.track.TrackResponseDto;
 import edu.personal.grailsfm.songservice.entity.Track;
 import edu.personal.grailsfm.songservice.repository.TrackRepository;
 import edu.personal.grailsfm.songservice.service.AudioProcessorService;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -41,5 +43,10 @@ public class TrackServiceImpl implements TrackService {
 
         if (savedTrack.getId() == null) throw new TrackCreationException();
         return savedTrack.getId();
+    }
+
+    @Override
+    public List<String> findAllTracksOfArtist(String artistId) {
+        return trackRepository.findIdsByArtistIdAndStatuses(artistId, new TrackStatus[]{TrackStatus.ACTIVE, TrackStatus.ARCHIVED});
     }
 }
