@@ -23,33 +23,21 @@ public class S3ServiceImpl implements S3Service {
     private final AmazonS3 amazonS3;
     private final S3Config s3Config;
 
-    @Transactional
     @Override
     public String uploadFile(MultipartFile file, String bucketName) throws IOException {
         if (file.isEmpty()) {
-            return "";
+            throw new FileNotFoundException();
         }
 
-        String filename = getUniqueFileName(file.getOriginalFilename());
-        amazonS3.putObject(bucketName, filename, file.getInputStream(), null);
+        String fileId = UUID.randomUUID().toString();
+        amazonS3.putObject(bucketName, fileId, file.getInputStream(), null);
 
-        return String.format("%s/%s/%s", s3Config.getAwsEndpoint(), bucketName, filename);
+        return fileId;
     }
 
     @Override
-    public Resource downloadFile(String uri) throws IOException {
-        S3Object s3Object = amazonS3.getObject(getFileNameFromUri(uri), s3Config.getBucketName());
+    public Resource downloadFile(String fileId) throws IOException {
+        S3Object s3Object = amazonS3.getObject(fileId, s3Config.getBucketName());
         return new ByteArrayResource(s3Object.getObjectContent().readAllBytes());
-    }
-
-    private String getUniqueFileName(String filename) {
-        String newName = UUID.randomUUID().toString();
-        return filename == null ? newName : newName + "-" + filename.toLowerCase().replace(" ", "-");
-    }
-
-    private String getFileNameFromUri(String uri) {
-        return uri
-                .replace(String.format("%s/", s3Config.getAwsEndpoint()), "")
-                .replace(String.format("%s/", s3Config.getBucketName()), "");
     }
 }

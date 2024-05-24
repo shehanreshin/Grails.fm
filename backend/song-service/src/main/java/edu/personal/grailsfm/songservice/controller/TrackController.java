@@ -30,4 +30,9 @@ public class TrackController {
     public ResponseEntity<List<String>> findAllTracksOfArtist(@PathVariable("id") String id) {
         return ResponseEntity.ok(trackService.findAllTracksOfArtist(id));
     }
+
+    @PostMapping("/uri")
+    public ResponseEntity<List<String>> findAllTracksOfArtist(@PathVariable("id") String id) {
+        return ResponseEntity.ok(trackService.findAllTracksOfArtist(id));
+    }
 }

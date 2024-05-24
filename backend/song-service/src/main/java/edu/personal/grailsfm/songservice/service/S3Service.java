@@ -7,5 +7,5 @@ import java.io.IOException;
 
 public interface S3Service {
     String uploadFile(MultipartFile file, String bucketName) throws IOException;
-    Resource downloadFile(String uri) throws IOException;
+    Resource downloadFile(String fileId) throws IOException;
 }
