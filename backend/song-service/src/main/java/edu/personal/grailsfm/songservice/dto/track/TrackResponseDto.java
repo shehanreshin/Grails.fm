@@ -28,8 +28,8 @@ public record TrackResponseDto(
         @PositiveOrZero(message = "Play count must be positive or zero")
         Long playCount,
 
-        @Schema(example = "https://s3.amazonaws.com/openai-assets/research-covers/gpt-3.jpg")
-        @NotBlank(message = "Path to the track is mandatory")
-        String uri
+        @Schema(example = "664f12e6ec730435c9c8dae6")
+        @NotBlank(message = "File ID is mandatory")
+        String fileId
 ) {
 }
