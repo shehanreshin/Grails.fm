@@ -12,6 +12,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Iterator;
@@ -59,9 +60,15 @@ public class GeneralExceptionHandler {
                 .body(new ErrorResponseDto(ex.getMessage(), new Date()));
     }
 
-//    @ExceptionHandler(IOException.class)
-//    public ResponseEntity<ErrorResponseDto> handleIOException(IOException ex){
-//        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-//                .body(new ErrorResponseDto(ex.getMessage(), new Date()));
-//    }
+    @ExceptionHandler(IOException.class)
+    public ResponseEntity<ErrorResponseDto> handleIOException(IOException ex){
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(new ErrorResponseDto(ex.getMessage(), new Date()));
+    }
+
+    @ExceptionHandler(FileNotFoundException.class)
+    public ResponseEntity<ErrorResponseDto> handleFileNotFoundException(FileNotFoundException ex){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ErrorResponseDto(ex.getMessage(), new Date()));
+    }
 }
