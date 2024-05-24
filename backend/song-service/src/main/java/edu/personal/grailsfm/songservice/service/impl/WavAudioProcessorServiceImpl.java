@@ -1,7 +1,6 @@
 package edu.personal.grailsfm.songservice.service.impl;
 
 import edu.personal.grailsfm.songservice.service.AudioProcessorService;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 

@@ -1,7 +1,6 @@
 package edu.personal.grailsfm.songservice.service;
 
 import edu.personal.grailsfm.songservice.dto.track.CreateTrackDto;
-import edu.personal.grailsfm.songservice.dto.track.TrackResponseDto;
 import org.springframework.core.io.Resource;
 
 import javax.sound.sampled.UnsupportedAudioFileException;

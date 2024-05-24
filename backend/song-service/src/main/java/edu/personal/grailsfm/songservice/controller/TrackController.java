@@ -1,7 +1,6 @@
 package edu.personal.grailsfm.songservice.controller;
 
 import edu.personal.grailsfm.songservice.dto.track.CreateTrackDto;
-import edu.personal.grailsfm.songservice.dto.track.TrackResponseDto;
 import edu.personal.grailsfm.songservice.service.TrackService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -11,8 +10,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.sound.sampled.UnsupportedAudioFileException;
-import java.io.IOException;
 import java.util.List;
 
 @RestController
