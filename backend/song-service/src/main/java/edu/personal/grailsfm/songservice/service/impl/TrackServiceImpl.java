@@ -5,6 +5,7 @@ import edu.personal.grailsfm.songservice.dto.track.TrackResponseDto;
 import edu.personal.grailsfm.songservice.entity.Track;
 import edu.personal.grailsfm.songservice.repository.TrackRepository;
 import edu.personal.grailsfm.songservice.service.AudioProcessorService;
+import edu.personal.grailsfm.songservice.service.S3Service;
 import edu.personal.grailsfm.songservice.service.TrackService;
 import edu.personal.grailsfm.songservice.service.factory.AudioProcessorServiceFactory;
 import edu.personal.grailsfm.songservice.util.enums.TrackStatus;
@@ -12,6 +13,7 @@ import edu.personal.grailsfm.songservice.util.exception.common.DuplicateFieldExc
 import edu.personal.grailsfm.songservice.util.exception.track.TrackCreationException;
 import edu.personal.grailsfm.songservice.util.mapper.TrackMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -24,6 +26,10 @@ public class TrackServiceImpl implements TrackService {
     private final AudioProcessorServiceFactory audioProcessorFactory;
     private final TrackMapper trackMapper;
     private final TrackRepository trackRepository;
+    private final S3Service s3Service;
+
+    @Value("${aws.s3.bucket-name}")
+    private String bucketName;
 
     @Override
     public String createTrack(CreateTrackDto trackDto) throws UnsupportedAudioFileException, IOException {
@@ -34,8 +40,10 @@ public class TrackServiceImpl implements TrackService {
         AudioProcessorService audioProcessorService = audioProcessorFactory.create(trackDto.file());
         Float duration = audioProcessorService.calculateDurationOfTrack(trackDto.file());
 
+        String uri = s3Service.uploadFile(trackDto.file(), bucketName);
+
         Track track = trackMapper.map(Track.class, trackDto);
-        track.setUri("this is a uri");
+        track.setUri(uri);
         track.setDuration(duration);
         track.setStatus(TrackStatus.ACTIVE);
 

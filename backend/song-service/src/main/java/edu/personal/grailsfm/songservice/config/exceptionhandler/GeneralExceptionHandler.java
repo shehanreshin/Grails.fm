@@ -59,9 +59,9 @@ public class GeneralExceptionHandler {
                 .body(new ErrorResponseDto(ex.getMessage(), new Date()));
     }
 
-    @ExceptionHandler(IOException.class)
-    public ResponseEntity<ErrorResponseDto> handleIOException(IOException ex){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(new ErrorResponseDto(ex.getMessage(), new Date()));
-    }
+//    @ExceptionHandler(IOException.class)
+//    public ResponseEntity<ErrorResponseDto> handleIOException(IOException ex){
+//        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+//                .body(new ErrorResponseDto(ex.getMessage(), new Date()));
+//    }
 }

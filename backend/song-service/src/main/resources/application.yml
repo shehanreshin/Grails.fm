@@ -16,8 +16,8 @@ spring:
       password: ${DB_PASSWORD}
 aws:
   s3:
-    endpoint: http://localhost:9550
+    endpoint: https://s3.localhost.localstack.cloud:9550
     bucket-name: songbucket
   access-key: none
   secret-key: none
-  region: eu-central-1
+  region: eu-north-1
