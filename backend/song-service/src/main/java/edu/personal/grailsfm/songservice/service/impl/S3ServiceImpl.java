@@ -37,7 +37,7 @@ public class S3ServiceImpl implements S3Service {
 
     @Override
     public Resource downloadFile(String fileId) throws IOException {
-        S3Object s3Object = amazonS3.getObject(fileId, s3Config.getBucketName());
+        S3Object s3Object = amazonS3.getObject(s3Config.getBucketName(), fileId);
         return new ByteArrayResource(s3Object.getObjectContent().readAllBytes());
     }
 }

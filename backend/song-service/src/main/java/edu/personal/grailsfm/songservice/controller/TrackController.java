@@ -5,6 +5,7 @@ import edu.personal.grailsfm.songservice.dto.track.TrackResponseDto;
 import edu.personal.grailsfm.songservice.service.TrackService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -31,8 +32,9 @@ public class TrackController {
         return ResponseEntity.ok(trackService.findAllTracksOfArtist(id));
     }
 
-    @PostMapping("/uri")
-    public ResponseEntity<List<String>> findAllTracksOfArtist(@PathVariable("id") String id) {
-        return ResponseEntity.ok(trackService.findAllTracksOfArtist(id));
+    @SneakyThrows
+    @GetMapping("/file/{id}")
+    public ResponseEntity<Resource> findTrackFileByFileId(@PathVariable("id") String id) {
+        return ResponseEntity.ok(trackService.findTrackFileByFileId(id));
     }
 }

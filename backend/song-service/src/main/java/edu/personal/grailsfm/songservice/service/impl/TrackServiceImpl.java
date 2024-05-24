@@ -14,6 +14,7 @@ import edu.personal.grailsfm.songservice.util.exception.track.TrackCreationExcep
 import edu.personal.grailsfm.songservice.util.mapper.TrackMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -40,10 +41,10 @@ public class TrackServiceImpl implements TrackService {
         AudioProcessorService audioProcessorService = audioProcessorFactory.create(trackDto.file());
         Float duration = audioProcessorService.calculateDurationOfTrack(trackDto.file());
 
-        String uri = s3Service.uploadFile(trackDto.file(), bucketName);
+        String fileId = s3Service.uploadFile(trackDto.file(), bucketName);
 
         Track track = trackMapper.map(Track.class, trackDto);
-        track.setUri(uri);
+        track.setFileId(fileId);
         track.setDuration(duration);
         track.setStatus(TrackStatus.ACTIVE);
 
@@ -58,5 +59,10 @@ public class TrackServiceImpl implements TrackService {
         return trackRepository.findIdsByArtistIdAndStatuses(artistId, new TrackStatus[]{TrackStatus.ACTIVE, TrackStatus.ARCHIVED}).stream()
                 .map(TrackRepository.IdProjection::getId)
                 .toList();
+    }
+
+    @Override
+    public Resource findTrackFileByFileId(String fileId) throws IOException {
+        return s3Service.downloadFile(fileId);
     }
 }
