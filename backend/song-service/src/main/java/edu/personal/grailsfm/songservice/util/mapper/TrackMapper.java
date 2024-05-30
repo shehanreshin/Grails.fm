@@ -1,8 +1,10 @@
 package edu.personal.grailsfm.songservice.util.mapper;
 
 import edu.personal.grailsfm.songservice.dto.track.CreateTrackDto;
+import edu.personal.grailsfm.songservice.dto.track.TrackResponseDto;
 import edu.personal.grailsfm.songservice.entity.Track;
 
 public interface TrackMapper {
     Track map(Class<Track> type, CreateTrackDto trackDto);
+    TrackResponseDto map(Class<TrackResponseDto> type, Track track);
 }

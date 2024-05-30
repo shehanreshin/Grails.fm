@@ -73,6 +73,6 @@ public class TrackServiceImpl implements TrackService {
         Optional<Track> track = trackRepository.findById(id);
         if (track.isEmpty()) throw new ResourceNotFoundException("Track not found");
 
-        return trackMapper.map(TrackResponseDto.class, track);
+        return trackMapper.map(TrackResponseDto.class, track.get());
     }
 }
