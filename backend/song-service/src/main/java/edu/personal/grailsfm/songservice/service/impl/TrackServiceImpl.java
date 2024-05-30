@@ -10,6 +10,7 @@ import edu.personal.grailsfm.songservice.service.TrackService;
 import edu.personal.grailsfm.songservice.service.factory.AudioProcessorServiceFactory;
 import edu.personal.grailsfm.songservice.util.enums.TrackStatus;
 import edu.personal.grailsfm.songservice.util.exception.common.DuplicateFieldException;
+import edu.personal.grailsfm.songservice.util.exception.common.ResourceNotFoundException;
 import edu.personal.grailsfm.songservice.util.exception.track.TrackCreationException;
 import edu.personal.grailsfm.songservice.util.mapper.TrackMapper;
 import lombok.RequiredArgsConstructor;

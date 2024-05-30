@@ -2,6 +2,7 @@ package edu.personal.grailsfm.songservice.config.exceptionhandler;
 
 import edu.personal.grailsfm.songservice.dto.common.ErrorResponseDto;
 import edu.personal.grailsfm.songservice.util.exception.common.DuplicateFieldException;
+import edu.personal.grailsfm.songservice.util.exception.common.ResourceNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -68,6 +69,12 @@ public class GeneralExceptionHandler {
 
     @ExceptionHandler(FileNotFoundException.class)
     public ResponseEntity<ErrorResponseDto> handleFileNotFoundException(FileNotFoundException ex){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ErrorResponseDto(ex.getMessage(), new Date()));
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<ErrorResponseDto> handleResourceNotFoundException(ResourceNotFoundException ex){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(new ErrorResponseDto(ex.getMessage(), new Date()));
     }
