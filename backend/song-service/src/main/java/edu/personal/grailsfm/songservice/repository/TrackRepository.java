@@ -17,6 +17,9 @@ public interface TrackRepository extends MongoRepository<Track, String> {
     @Query(value = "{artist_id: ?0, status: {$in: ?1}}", fields = "{_id:  1}")
     List<IdProjection> findIdsByArtistIdAndStatuses(String artistId, TrackStatus[] status);
 
+    @Query(value = "{_id:  ?0}")
+    Optional<Track> findById(String id);
+
     interface IdProjection {
         String getId();
     }

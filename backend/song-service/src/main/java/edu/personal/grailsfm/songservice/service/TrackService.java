@@ -1,6 +1,7 @@
 package edu.personal.grailsfm.songservice.service;
 
 import edu.personal.grailsfm.songservice.dto.track.CreateTrackDto;
+import edu.personal.grailsfm.songservice.dto.track.TrackResponseDto;
 import org.springframework.core.io.Resource;
 
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -13,4 +14,6 @@ public interface TrackService {
     List<String> findAllTracksOfArtist(String artistId);
 
     Resource findTrackFileByFileId(String fileId) throws IOException;
+
+    TrackResponseDto findTrackById(String id);
 }

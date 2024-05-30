@@ -1,6 +1,7 @@
 package edu.personal.grailsfm.songservice.controller;
 
 import edu.personal.grailsfm.songservice.dto.track.CreateTrackDto;
+import edu.personal.grailsfm.songservice.dto.track.TrackResponseDto;
 import edu.personal.grailsfm.songservice.service.TrackService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -33,5 +34,10 @@ public class TrackController {
     @GetMapping("/file/{id}")
     public ResponseEntity<Resource> findTrackFileByFileId(@PathVariable("id") String id) {
         return ResponseEntity.ok(trackService.findTrackFileByFileId(id));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<TrackResponseDto> findTrackById(@PathVariable("id") String id) {
+        return ResponseEntity.ok(trackService.findTrackById(id));
     }
 }
