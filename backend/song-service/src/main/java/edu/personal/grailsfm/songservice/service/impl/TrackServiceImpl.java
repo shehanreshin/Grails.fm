@@ -49,6 +49,7 @@ public class TrackServiceImpl implements TrackService {
         track.setFileId(fileId);
         track.setDuration(duration);
         track.setStatus(TrackStatus.ACTIVE);
+        track.setPlayCount(0L);
 
         Track savedTrack = trackRepository.save(track);
 
