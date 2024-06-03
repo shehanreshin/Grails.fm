@@ -36,8 +36,13 @@ public class TrackController {
         return ResponseEntity.ok(trackService.findTrackFileByFileId(id));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}/details")
     public ResponseEntity<TrackResponseDto> findTrackById(@PathVariable("id") String id) {
-        return ResponseEntity.ok(trackService.findTrackById(id));
+        return ResponseEntity.ok(trackService.findTrackDetailsById(id));
+    }
+
+    @GetMapping("/details")
+    public ResponseEntity<List<TrackResponseDto>> findTracksByIds(@RequestBody List<String> ids) {
+        return ResponseEntity.ok(trackService.findTracksDetailsByIds(ids));
     }
 }

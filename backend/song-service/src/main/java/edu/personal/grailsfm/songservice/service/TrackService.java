@@ -15,5 +15,7 @@ public interface TrackService {
 
     Resource findTrackFileByFileId(String fileId) throws IOException;
 
-    TrackResponseDto findTrackById(String id);
+    TrackResponseDto findTrackDetailsById(String id);
+
+    List<TrackResponseDto> findTracksDetailsByIds(List<String> ids);
 }

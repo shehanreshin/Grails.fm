@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -70,10 +71,22 @@ public class TrackServiceImpl implements TrackService {
     }
 
     @Override
-    public TrackResponseDto findTrackById(String id) {
+    public TrackResponseDto findTrackDetailsById(String id) {
         Optional<Track> track = trackRepository.findById(id);
         if (track.isEmpty()) throw new ResourceNotFoundException("Track not found");
 
         return trackMapper.map(TrackResponseDto.class, track.get());
+    }
+
+    @Override
+    public List<TrackResponseDto> findTracksDetailsByIds(List<String> ids) {
+        List<Track> tracks = ids.stream()
+                .map(trackRepository::findById)
+                .map(track -> track.orElseThrow(() -> new ResourceNotFoundException("Track not found")))
+                .toList();
+
+        return tracks.stream()
+                .map(track -> trackMapper.map(TrackResponseDto.class, track))
+                .toList();
     }
 }
